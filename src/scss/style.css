@@ -9939,5 +9939,10 @@ body {
 .app-header .navbar-nav .dropdown-menu-right {
   right: auto; }
 
+.logo-main {
+  font-weight: bold;
+  color: #00aced;
+  font-size: 20px; }
+
 html body .app.flex-row.align-items-center {
   height: 100vh; }

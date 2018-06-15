@@ -1,4 +1,4 @@
-import {CONSTANTS} from "./constant.js";
+//import {CONSTANTS} from "./constant.js";
 //export const WEBSERVICE_URL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+'/'+CONSTANTS.PRE_PATH;
 // export const WEBSERVICE_URL = 'http://localhost:8099';
 
@@ -7,7 +7,7 @@ export const WEBSERVICE_URL = 'http://localhost:5000/sharingcodeapp/us-central1/
 console.log("WEBSERVICE_URL: ", WEBSERVICE_URL);
 
 
-export const SOCKET_URL = 'http://localhost:9092';
+//export const SOCKET_URL = 'http://localhost:9092';
 
 // Authentication
 export const CONST_SERVICE_URL_LOGIN 									= WEBSERVICE_URL + '/CheckLoginAdmin';
@@ -21,8 +21,8 @@ export const CONST_SERVICE_URL_EDIT_USER 							    = WEBSERVICE_URL + '/EditUse
 
 
 
-export const CONST_SERVICE_URL_LOGOUT 									= WEBSERVICE_URL + '/api/logout';
-export const CONST_SERVICE_URL_CHECK_VERSION_NO 						= WEBSERVICE_URL + '/api/versionNo';
+export const CONST_SERVICE_URL_LOGOUT 									                = WEBSERVICE_URL + '/api/logout';
+export const CONST_SERVICE_URL_CHECK_VERSION_NO 					            	= WEBSERVICE_URL + '/api/versionNo';
 
 // Dashboard
 export const CONST_GET_DASHBOARD_DATA                                   = WEBSERVICE_URL + '/api/getDashboardData';

@@ -1,7 +1,7 @@
-import {browserHistory} from "react-router";
-import {CONST_SERVICE_URL_LOGIN} from "../../app/serviceConstants.js";
-import {sendRequestToServer} from "../../utils/helper.js";
-import {Messages} from "../../app/messages.js";
+import {CONST_SERVICE_URL_LOGIN} from "../../../app/serviceConstants.js";
+import {sendRequestToServer} from "../../../app/helper.js";
+import {Messages} from "../../../app/messages.js";
+import {push} from 'react-router-redux';
 /**********************************************************************************************************************/
 
 export const REQUEST_LOGIN = 'login/REQUEST_LOGIN';
@@ -27,8 +27,8 @@ export function requestLoginFailure(errorMsg) {
 }
 
 //use thunk middleware in reducer for this to work
-export function loginUser(id, password) {
-	return (dispatch) => {
+export function loginUser(id, password, history) {
+	return (dispatch, getState) => {
 		if (!id) {
 			dispatch(requestLoginFailure(Messages.MESSAGE_USERNAME_CANT_BE_EMPTY));
 			return;
@@ -40,10 +40,11 @@ export function loginUser(id, password) {
 		dispatch(requestLogin());
 		let loginSuccess = (data) => {
 			if(data.responseCode == '00'){
-                dispatch(requestLoginSuccess());
-                browserHistory.push('/CodeManager');
+              dispatch(requestLoginSuccess());
+        history.push('/Home');
 			} else{
                 dispatch(requestLoginFailure(data.errorMessage));
+
 			}
 		};
 		let loginFailure = (data) => {

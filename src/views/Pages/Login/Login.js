@@ -1,7 +1,31 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import {connect} from "react-redux";
+import {withRouter} from 'react-router-dom';
+import * as loginAction from './loginActions';
+import * as commonAction from '../common/commonActions';
 
 class Login extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      username : "",
+      password : "",
+    }
+  }
+  componentWillMount(){
+
+  }
+  _onChange(fieldName, value){
+    if(fieldName == 'username'){
+      this.setState({username: value})
+    } else if(fieldName == 'password'){
+      this.setState({password: value})
+    }
+}
+  login(){
+    this.props.login(this.state.username, this.state.password, this.props.history)
+  }
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -13,13 +37,17 @@ class Login extends Component {
                   <CardBody>
                     <h1>Login</h1>
                     <p className="text-muted">Sign In to your account</p>
+                    {
+                      this.props.errorMsg != "" ?
+                        <p className="text-muted alert-danger">{this.props.errorMsg}</p>: ""
+                    }
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="icon-user"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Username" />
+                      <Input type="text" placeholder="Username" onChange={(e)=>this._onChange('username', e.target.value)}/>
                     </InputGroup>
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">
@@ -27,11 +55,11 @@ class Login extends Component {
                           <i className="icon-lock"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="password" placeholder="Password" />
+                      <Input type="password" placeholder="Password"  onChange={(e)=>this._onChange('password', e.target.value)}/>
                     </InputGroup>
                     <Row>
                       <Col xs="6">
-                        <Button color="primary" className="px-4">Login</Button>
+                        <Button color="primary" className="px-4" onClick={()=>{this.login()}}>Login</Button>
                       </Col>
                       <Col xs="6" className="text-right">
                         <Button color="link" className="px-0">Forgot password?</Button>
@@ -47,7 +75,7 @@ class Login extends Component {
                         labore et dolore magna aliqua.</p>
                       <Button color="primary" className="mt-3" active>Register Now!</Button>
                     </div>
-                  </CardBody>
+            </CardBody>
                 </Card>
               </CardGroup>
             </Col>
@@ -58,4 +86,24 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    errorMsg: state.login.errorMsg,
+    isShowLoader: state.login.isRequestingLogin,
+    history: ownProps.history,
+  }
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    login: (username, password, history) => {
+      dispatch(loginAction.loginUser(username, password, history));
+    },
+    setHistory: (history) => {
+      dispatch(commonAction.setHistory(history));
+    },
+  };
+};
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
+
+

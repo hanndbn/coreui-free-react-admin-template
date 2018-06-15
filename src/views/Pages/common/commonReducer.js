@@ -1,40 +1,18 @@
 import {assignIn as _assignIn} from "lodash";
-import * as loginActions from "./loginActions.js";
+import * as commonActions from "./commonActions.js";
 const initialState = {
-	username: null,
-	isAuthenticated: false,
-	isRequestingLogin: false,
-	errorMsg: null,
+	history: null,
 };
 
-
-const loginReducer = (state=initialState, action) => {
+const commonReducer = (state=initialState, action) => {
 	switch(action.type) {
-		case loginActions.REQUEST_LOGIN:
-			return _assignIn({}, state, {
-				username: null,
-				token: null,
-				isAuthenticated: false,
-				isRequestingLogin: true,
-				errorMsg: null,
-			});
-		case loginActions.REQUEST_LOGIN_SUCCESS:
-			return _assignIn({}, state, {
-				username: action.username,
-				isAuthenticated: true,
-				isRequestingLogin: false,
-				errorMsg: null,
-			});
-		case loginActions.REQUEST_LOGIN_FAILURE:
-			return _assignIn({}, state, {
-				username: null,
-				isAuthenticated: false,
-				isRequestingLogin: false,
-				errorMsg: action.errorMsg,
-			});
+		case commonActions.SET_HISTORY:
+			return {
+				history: action.history,
+			};
 		default:
 			return state;
 	}
 };
 
-export default loginReducer;
+export default commonReducer;

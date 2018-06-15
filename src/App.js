@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import { withRouter } from 'react-router-dom'
+import {connect} from "react-redux";
 // Styles
 // CoreUI Icons Set
 import '@coreui/icons/css/coreui-icons.min.css';
@@ -35,5 +37,10 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
 
-export default App;
+  }
+};
+
+export default withRouter(connect(mapStateToProps)(App));
