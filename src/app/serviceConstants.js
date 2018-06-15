@@ -10,10 +10,11 @@ console.log("WEBSERVICE_URL: ", WEBSERVICE_URL);
 //export const SOCKET_URL = 'http://localhost:9092';
 
 // Authentication
-export const CONST_SERVICE_URL_LOGIN 									= WEBSERVICE_URL + '/CheckLoginAdmin';
+export const CONST_SERVICE_URL_LOGIN 									    = WEBSERVICE_URL + '/CheckLoginAdmin';
+export const CONST_SERVICE_URL_REGISTER 									= WEBSERVICE_URL + '/CreateAccount';
 export const CONST_SERVICE_URL_GET_CODE 							    = WEBSERVICE_URL + '/GetListCode';
 export const CONST_SERVICE_URL_EDIT_CODE 							    = WEBSERVICE_URL + '/EditCode';
-export const CONST_SERVICE_URL_GET_APP 							        = WEBSERVICE_URL + '/GetListApp';
+export const CONST_SERVICE_URL_GET_APP 							      = WEBSERVICE_URL + '/GetListApp';
 export const CONST_SERVICE_URL_EDIT_APP 							    = WEBSERVICE_URL + '/EditApp';
 export const CONST_SERVICE_URL_GET_USER 							    = WEBSERVICE_URL + '/GetListUser';
 export const CONST_SERVICE_URL_EDIT_USER 							    = WEBSERVICE_URL + '/EditUser';

@@ -1,6 +1,7 @@
 export const Messages = {
 	MESSAGE_NO_RECORD_FOUND: 'No record found',
 	MESSAGE_USERNAME_CANT_BE_EMPTY: 'Username can\'t be empty',
+	MESSAGE_EMAIL_CANT_BE_EMPTY: 'Email can\'t be empty',
 	MESSAGE_PASSWORD_CANT_BE_EMPTY: 'Password can\'t be empty',
 	MESSAGE_REQUEST_LOGIN_CONNECTION_FAILURE : 'System temporarily not available. Please try again late.',
 	MESSAGE_CANT_BE_EMPTY : 'We are unable to process your request. Please complete all required fields in the correct format in order to proceed.',
