@@ -10,7 +10,8 @@ class Register extends Component {
       username : "",
       email: "",
       password : "",
-      rePassword: ""
+      rePassword: "",
+      validation: {}
     }
   }
 
@@ -27,6 +28,24 @@ class Register extends Component {
   }
 
   register(){
+    // validation
+    if(this.state.username == ""){
+      this.props.setError("Please fill Username");
+      return;
+    } else if(this.state.email == ""){
+      this.props.setError("Please fill Email");
+      return;
+    }else if(this.state.password == ""){
+      this.props.setError("Please fill Password");
+      return;
+    }
+    else if(this.state.rePassword == ""){
+      this.props.setError("Please fill recheck Password");
+      return;
+    }else if(this.state.password != this.state.rePassword){
+      this.props.setError("recheck password not match");
+      return;
+    }
     this.props.register(this.state.username, this.state.email, this.state.password, this.props.history)
   }
   render() {
@@ -39,13 +58,18 @@ class Register extends Component {
                 <CardBody className="p-4">
                   <h1>Register</h1>
                   <p className="text-muted">Create your account</p>
+                  {
+                    this.props.errorMsg ?
+                      <p className="alert alert-danger">{this.props.errorMsg}</p>: ""
+                  }
+
                   <InputGroup className="mb-3">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>
                         <i className="icon-user"></i>
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input type="text" placeholder="Username" onChange={(e)=>this._onChange('username', e.target.value)}/>
+                    <Input type="text" placeholder="Username" invalid={true} onChange={(e)=>this._onChange('username', e.target.value)}/>
                   </InputGroup>
                   <InputGroup className="mb-3">
                     <InputGroupAddon addonType="prepend">
@@ -92,8 +116,8 @@ class Register extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    errorMsg: state.login.errorMsg,
-    isShowLoader: state.login.isRequestingLogin,
+    errorMsg: state.register.errorMsg,
+    isShowLoader: state.register.isRequestingLogin,
     history: ownProps.history,
   }
 };
@@ -102,6 +126,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     register: (username, email, password, history) => {
       dispatch(registerActions.registerUser(username, email, password, history));
+    },
+    setError: (error) => {
+      dispatch(registerActions.requestRegisterFailure(error));
     },
   };
 };

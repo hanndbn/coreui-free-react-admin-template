@@ -1,35 +1,22 @@
 import {assignIn as _assignIn} from "lodash";
-import * as loginActions from "./loginActions.js";
+import * as registerActions from "./RegisterActions.js";
 const initialState = {
-	username: null,
-	isAuthenticated: false,
-	isRequestingLogin: false,
 	errorMsg: null,
 };
 
 
-const loginReducer = (state=initialState, action) => {
+const RegisterReducer = (state=initialState, action) => {
 	switch(action.type) {
-		case loginActions.REQUEST_LOGIN:
+		case registerActions.REQUEST_REGISTER:
 			return _assignIn({}, state, {
-				username: null,
-				token: null,
-				isAuthenticated: false,
-				isRequestingLogin: true,
 				errorMsg: null,
 			});
-		case loginActions.REQUEST_LOGIN_SUCCESS:
+		case registerActions.REQUEST_REGISTER_SUCCESS:
 			return _assignIn({}, state, {
-				username: action.username,
-				isAuthenticated: true,
-				isRequestingLogin: false,
 				errorMsg: null,
 			});
-		case loginActions.REQUEST_LOGIN_FAILURE:
+		case registerActions.REQUEST_REGISTER_FAILURE:
 			return _assignIn({}, state, {
-				username: null,
-				isAuthenticated: false,
-				isRequestingLogin: false,
 				errorMsg: action.errorMsg,
 			});
 		default:
@@ -37,4 +24,4 @@ const loginReducer = (state=initialState, action) => {
 	}
 };
 
-export default loginReducer;
+export default RegisterReducer;
