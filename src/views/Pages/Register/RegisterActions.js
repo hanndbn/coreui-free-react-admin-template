@@ -29,7 +29,6 @@ export function requestRegisterFailure(errorMsg) {
 //use thunk middleware in reducer for this to work
 export function registerUser(userName, email, password, history) {
 	return (dispatch, getState) => {
-	  debugger
 		if (!userName) {
 			dispatch(requestRegisterFailure(Messages.MESSAGE_USERNAME_CANT_BE_EMPTY));
 			return;
