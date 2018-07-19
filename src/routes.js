@@ -21,7 +21,7 @@ const UserManager = Loadable({
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/userManager', name: 'UserManager', component: Dashboard },
+  { path: '/userManager', name: 'UserManager', component: UserManager },
 
 ];
 
