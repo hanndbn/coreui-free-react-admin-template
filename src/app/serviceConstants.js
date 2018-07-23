@@ -12,6 +12,12 @@ console.log("WEBSERVICE_URL: ", WEBSERVICE_URL);
 // Authentication
 export const CONST_SERVICE_URL_LOGIN 									    = WEBSERVICE_URL + '/CheckLoginAdmin';
 export const CONST_SERVICE_URL_REGISTER 									= WEBSERVICE_URL + '/CreateAccount';
+
+//User
+export const CONST_SERVICE_URL_GET_ALL_USER 							= WEBSERVICE_URL + '/GetAllUser';
+
+
+
 export const CONST_SERVICE_URL_GET_CODE 							    = WEBSERVICE_URL + '/GetListCode';
 export const CONST_SERVICE_URL_EDIT_CODE 							    = WEBSERVICE_URL + '/EditCode';
 export const CONST_SERVICE_URL_GET_APP 							      = WEBSERVICE_URL + '/GetListApp';

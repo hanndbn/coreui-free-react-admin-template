@@ -13,13 +13,13 @@ const Dashboard = Loadable({
 });
 
 const UserManager = Loadable({
-  loader: () => import('./views/UserManager'),
+  loader: () => import('./views/Pages/UserManager'),
   loading: Loading,
 });
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
-  { path: '/', exact: true, name: 'Home', component: DefaultLayout },
+  { path: '/', exact: true, name: 'Home', component: Dashboard },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/userManager', name: 'UserManager', component: UserManager },
 
