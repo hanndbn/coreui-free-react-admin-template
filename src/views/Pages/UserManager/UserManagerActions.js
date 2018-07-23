@@ -12,11 +12,11 @@ export function requestUser() {
 }
 
 export const REQUEST_USER_SUCCESS = 'userManager/REQUEST_USER_SUCCESS';
-export function requestUserSuccess(userData, totalPage) {
+export function requestUserSuccess(userData, itemCount) {
   return {
     type: REQUEST_USER_SUCCESS,
     userData,
-    totalPage
+    itemCount
   }
 }
 
@@ -58,7 +58,7 @@ export function requestUserData() {
     dispatch(requestUser());
     let requestSuccess = (data) => {
       if (data.responseCode == '00') {
-        dispatch(requestUserSuccess(data.data, data.totalPage));
+        dispatch(requestUserSuccess(data.data, data.itemCount));
       } else {
         dispatch(requestUserFailure(data.errorMessage));
       }

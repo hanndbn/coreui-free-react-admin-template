@@ -5,7 +5,7 @@ const initialState = {
 	isRequesting: false,
 	errorMsg: null,
   txtSearch: "",
-  totalPage: "0",
+  itemCount: "0",
   numberPerPage: "10",
 };
 
@@ -21,7 +21,7 @@ const UserManagerReducer = (state=initialState, action) => {
 		case userManagerActions.REQUEST_USER_SUCCESS:
 			return _assignIn({}, state, {
         userData: action.userData,
-        totalPage: action.totalPage,
+        itemCount: action.itemCount,
         isRequesting: false,
         errorMsg: null,
 			});

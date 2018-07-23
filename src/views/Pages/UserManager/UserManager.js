@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom';
 import * as userManagerActions from './UserManagerActions';
-import {Pagination} from 'react-bootstrap';
+import Pagination from 'react-js-pagination';
 import {
   Row,
 } from 'reactstrap';
@@ -36,7 +36,9 @@ class UserManager extends Component {
                   <div className="col-sm-12 col-md-6">
                     <div className="dataTables_length" id="DataTables_Table_0_length"><label>Show
                       <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"
-                              className="form-control form-control-sm" onChange={(e)=>{this.props.setNumberPerPage(e.target.value)}} value={this.props.numberPerPage}>
+                              className="form-control form-control-sm" onChange={(e) => {
+                        this.props.setNumberPerPage(e.target.value)
+                      }} value={this.props.numberPerPage}>
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
@@ -48,10 +50,10 @@ class UserManager extends Component {
                                                                                                            className="form-control form-control-sm"
                                                                                                            placeholder=""
                                                                                                            value={this.props.txtSearch}
-                                                                                                           onChange={(e)=>this.props.setTextSearch(e.target.value)}
-                                                                                                           onKeyDown={(e)=>{
-                                                                                                             if(e.keyCode == 13){
-                                                                                                                this.props.requestUser();
+                                                                                                           onChange={(e) => this.props.setTextSearch(e.target.value)}
+                                                                                                           onKeyDown={(e) => {
+                                                                                                             if (e.keyCode == 13) {
+                                                                                                               this.props.requestUser();
                                                                                                              }
                                                                                                            }}
                                                                                                            aria-controls="DataTables_Table_0"/></label>
@@ -87,10 +89,10 @@ class UserManager extends Component {
                       </thead>
                       <tbody>
                       {
-                        this.props.userData.map((user,idx) => {
+                        this.props.userData.map((user, idx) => {
                           return (
                             <tr role="row" className="odd" key={user.Key}>
-                              <td className="sorting_1">{idx}</td>
+                              <td className="sorting_1">{idx + 1}</td>
                               <td>{user.UserName}</td>
                               <td className="sorting_1">{user.Key}</td>
                               <td>{user.Email}</td>
@@ -128,19 +130,20 @@ class UserManager extends Component {
                 <div className="row">
                   <div className="col-sm-12 col-md-5">
                     <div className="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
-                      Showing 1 to 10 of 32 entries
+                      {/*Showing {(this.props.numberPerPage * (this.props.pageIndex - 1)) + 1} to {this.props.numberPerPage * this.props.pageIndex} of {this.props.userData.length} entries*/}
                     </div>
                   </div>
                   <div className="col-sm-12 col-md-7">
-                    <Pagination
-                      maxButtons={5}
-                      //next="Next"
-                      //prev="Prev"
-                      ellipsis
-                      boundaryLinks
-                      activePage={1}
-                      items={10}
+                    <div className="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                      <Pagination
+                        activePage={this.props.pageIndex}
+                        itemsCountPerPage={this.props.numberPerPage}
+                        totalItemsCount={this.props.itemCount}
+                        onChange={(e) => {
+                          this.props.setPageIndex(e)
+                        }}
                       />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -159,6 +162,7 @@ const mapStateToProps = (state, ownProps) => {
     pageIndex: state.userManager.pageIndex,
     numberPerPage: state.userManager.numberPerPage,
     txtSearch: state.userManager.txtSearch,
+    itemCount: state.userManager.itemCount,
   }
 };
 
