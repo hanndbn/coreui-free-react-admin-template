@@ -55,6 +55,8 @@ export function requestUserData() {
     let txtSearch = getState().userManager.txtSearch;
     let numberPerPage = getState().userManager.numberPerPage;
     let pageIndex = getState().userManager.pageIndex;
+    let sortby = getState().userManager.sortby;
+    let sortType = getState().userManager.sortType;
     dispatch(requestUser());
     let requestSuccess = (data) => {
       if (data.responseCode == '00') {
@@ -69,7 +71,9 @@ export function requestUserData() {
     let req = {
       "txtSearch": txtSearch ? txtSearch : "",
       "numberPerPage": numberPerPage ? numberPerPage : "50",
-      "pageIndex" : pageIndex ? pageIndex : "1"
+      "pageIndex" : pageIndex ? pageIndex : "1",
+      "sortby" : sortby ? sortby : "",
+      "sortType" : sortType ? sortType : "",
     };
     sendRequestToServer(CONST_SERVICE_URL_GET_ALL_USER, "POST", req, requestSuccess, requestFailure, dispatch);
   }

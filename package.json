@@ -45,7 +45,8 @@
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-thunk": "^2.3.0",
     "request": "^2.87.0",
-    "simple-line-icons": "^2.4.1"
+    "simple-line-icons": "^2.4.1",
+    "sweetalert": "^2.1.0"
   },
   "devDependencies": {
     "babel-jest": "^23.0.1",

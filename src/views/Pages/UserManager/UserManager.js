@@ -82,6 +82,9 @@ class UserManager extends Component {
                         <th className="sorting_asc" tabIndex="0" aria-controls="DataTables_Table_0" rowSpan="1"
                             colSpan="1" aria-sort="ascending">Telephone
                         </th>
+                        <th className="sorting_asc" tabIndex="0" aria-controls="DataTables_Table_0" rowSpan="1"
+                            colSpan="1" aria-sort="ascending">Last Active Date
+                        </th>
                         <th tabIndex="0" aria-controls="DataTables_Table_0" rowSpan="1"
                             colSpan="1">Action
                         </th>
@@ -97,6 +100,7 @@ class UserManager extends Component {
                               <td className="sorting_1">{user.Key}</td>
                               <td>{user.Email}</td>
                               <td>{user.Telephone}</td>
+                              <td>{user.LastActiveDate}</td>
                               <td>
                                 <button className="btn btn-info" style={{color: "white"}}>Detail</button>
                               </td>

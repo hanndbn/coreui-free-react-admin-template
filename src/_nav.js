@@ -27,6 +27,15 @@ export default {
       //   text: 'NEW',
       // },
     },
+    {
+      name: 'Setting',
+      url: '/setting',
+      icon: 'icon-calculator',
+      // badge: {
+      //   variant: 'info',
+      //   text: 'NEW',
+      // },
+    },
     // {
     //   name: 'Colors',
     //   url: '/theme/colors',

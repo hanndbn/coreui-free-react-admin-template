@@ -7,6 +7,8 @@ const initialState = {
   txtSearch: "",
   itemCount: "0",
   numberPerPage: "10",
+  sortby : "",
+  sortType: ""
 };
 
 

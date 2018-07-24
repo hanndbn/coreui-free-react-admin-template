@@ -10018,5 +10018,8 @@ body {
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem; }
 
+.card {
+  width: 100%; }
+
 html body .app.flex-row.align-items-center {
   height: 100vh; }
