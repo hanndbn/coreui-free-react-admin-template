@@ -36,6 +36,15 @@ export default {
       //   text: 'NEW',
       // },
     },
+    {
+      name: 'Jackpot Manager',
+      url: '/jackpotManager',
+      icon: 'icon-calculator',
+      // badge: {
+      //   variant: 'info',
+      //   text: 'NEW',
+      // },
+    },
     // {
     //   name: 'Colors',
     //   url: '/theme/colors',

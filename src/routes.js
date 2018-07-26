@@ -22,12 +22,19 @@ const Setting = Loadable({
   loading: Loading,
 });
 
+const JackpotManager = Loadable({
+  loader: () => import('./views/Pages/JackpotManager'),
+  loading: Loading,
+});
+
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: Dashboard },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/userManager', name: 'UserManager', component: UserManager },
   { path: '/setting', name: 'Setting', component: Setting },
+  { path: '/jackpotManager', name: 'JackpotManager', component: JackpotManager },
 
 ];
 

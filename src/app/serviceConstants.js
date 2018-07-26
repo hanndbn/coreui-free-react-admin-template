@@ -17,6 +17,7 @@ export const CONST_SERVICE_URL_REGISTER 									= WEBSERVICE_URL + '/CreateAcco
 export const CONST_SERVICE_URL_GET_ALL_USER 							= WEBSERVICE_URL + '/GetAllUser';
 
 export const CONST_SERVICE_URL_GET_SETTING 							= WEBSERVICE_URL + '/GetSetting';
+export const CONST_SERVICE_URL_GET_JACKPOT 							= WEBSERVICE_URL + '/GetJackpot';
 
 
 
