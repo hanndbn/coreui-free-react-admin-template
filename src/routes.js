@@ -27,6 +27,11 @@ const JackpotManager = Loadable({
   loading: Loading,
 });
 
+const ManagerTable = Loadable({
+  loader: () => import('./views/Pages/ManagerTable'),
+  loading: Loading,
+});
+
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -35,6 +40,7 @@ const routes = [
   { path: '/userManager', name: 'UserManager', component: UserManager },
   { path: '/setting', name: 'Setting', component: Setting },
   { path: '/jackpotManager', name: 'JackpotManager', component: JackpotManager },
+  { path: '/managerTable', name: 'ManagerTable', component: ManagerTable },
 
 ];
 

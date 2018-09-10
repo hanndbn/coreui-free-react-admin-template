@@ -45,6 +45,26 @@ export default {
       //   text: 'NEW',
       // },
     },
+    {
+      name: 'Challenge Manager',
+      icon: 'icon-puzzle',
+      children: [
+        {
+          name: 'ChallegeData',
+          url: '/managerTable',
+          icon: 'icon-puzzle',
+        },
+        {
+          name: 'Play Type',
+          url: '/managerTable?tableName=PlayType',
+          icon: 'icon-puzzle',
+        },
+      ]
+      // badge: {
+      //   variant: 'info',
+      //   text: 'NEW',
+      // },
+    },
     // {
     //   name: 'Colors',
     //   url: '/theme/colors',
