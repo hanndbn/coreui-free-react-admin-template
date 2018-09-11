@@ -25,7 +25,8 @@ export const LIST_TABLE_CONSTRAINT = {
   "ChallengeData": {
     "Environment": false,
     "GameSettings": false,
-    "Reward": false
+    "Reward": false,
+    "ChallengeTitle": false,
   },
   "GameSettings":
     {

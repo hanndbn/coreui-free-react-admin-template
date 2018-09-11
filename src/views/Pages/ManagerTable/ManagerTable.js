@@ -57,7 +57,8 @@ class ManagerTable extends Component {
                                  className="col-9  font-weight-bold ">{tableData}:</label>
                           <div className="col-3 text-right">
                             <button className="btn btn-primary g-mr-5 g-px-15"
-                                    onClick={() => this.props.handleChangeData("E", this.props.listKey, tableData, this.props.managerTableData[tableData])}>Edit
+                                    onClick={() => this.props.handleChangeData("E", this.props.listKey, tableData, this.props.managerTableData[tableData])}>
+                              Edit
                             </button>
                             <button className="btn btn-danger"
                                     onClick={() => this.props.handleDeleteData(tableData)}>Delete
@@ -66,17 +67,19 @@ class ManagerTable extends Component {
                         </div>
                         <div className="col-12 g-pt-10">
                           {Object.keys(this.props.managerTableData[tableData]).map((property) => {
+                            let value = this.props.managerTableData[tableData][property];
+                            if(this.props.constraintData[property]){
+                              this.props.constraintData[property].data.filter(v=>v.value == value).map(v=>{
+                                value = v.label;
+                              });
+                            }
+
                             return (
                               <div className="form-group row" key={tableData + property}>
                                 <div className="col-1"></div>
                                 <label v-for={property} className="col-5">{property}:</label>
                                 <div className="col-6">
-                                  {/*<input className="form-control" id={property}*/}
-                                  {/*value={this.props.managerTableData[tableData][property]} onChange={(e) => {*/}
-                                  {/*this.props.changeData(tableData, property, e.target.value)*/}
-                                  {/*}}*/}
-                                  {this.props.managerTableData[tableData][property]}
-                                  {/*/>*/}
+                                  {value}
                                 </div>
                               </div>
                             )
@@ -91,62 +94,74 @@ class ManagerTable extends Component {
             </div>
           </div>
         </Row>
-        <Modal isOpen={this.props.showModal} toggle={() => this.props.handleShowModal(false)}>
-          <ModalHeader toggle={() => this.props.handleShowModal(false)}>Add Data</ModalHeader>
-          <ModalBody>
-            {
-              this.props.listKey.map(key => {
-                let defaultValue = [];
-                if(this.props.tmpData[key.value] && this.props.constraintData[key] && LIST_TABLE_CONSTRAINT[this.props.tableName][key]){
-                  let listKey = this.props.tmpData[key.value].split(",");
-                  defaultValue = this.props.constraintData[key].data.filter(v=>_.contains(listKey, v.value));
-                }
-                return (
-                  <div className="form-group" key={key}>
-                    <label className="col-12">{key}</label>
-                    <div className="col-12">
-                      {
-                        this.props.constraintData[key] ?
-                          LIST_TABLE_CONSTRAINT[this.props.tableName][key] ?
-                            <Select
-                              defaultValue = {defaultValue}
-                              options={this.props.constraintData[key].data}
-                              // value={this.props.tmpData[key]}
-                              onChange={(e) => {
-                                this.props.handleChangeDataAddMultiple(key, e)
-                              }}
-                              isMulti
-                            />
-                            :
-                            <Input type="select" value={this.props.tmpData[key.value]} onChange={(e) => {
-                              this.props.handleChangeDataAdd(key, e.target.value);
-                            }}
-                            >
-                              {this.props.constraintData[key].data.map(k => {
-                                return (
-                                  <option value={k.value} key={k.value}>{k.label}</option>
-                                )
-                              })}
-                            </Input>
-                          :
-                          <Input type="text" disabled={key == 'ID' && this.props.screenType == "E"}
-                                 className="form-control"
-                                 value={this.props.tmpData[key]} onChange={(e) => {
-                            this.props.handleChangeDataAdd(key, e.target.value);
-                          }}/>
-                      }
-                    </div>
-                  </div>
-                )
-              })
-            }
 
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={() => this.props.saveManagerTable()}>Submit</Button>
-            <Button color="secondary" onClick={() => this.props.handleShowModal(false)}>Cancel</Button>
-          </ModalFooter>
-        </Modal>
+        {
+          (this.props.screenType == 'A' || this.props.screenType == 'E') ?
+            <Modal isOpen={this.props.showModal} toggle={() => this.props.handleShowModal(false)}>
+              <ModalHeader toggle={() => this.props.handleShowModal(false)}>Add/Edit Data
+              </ModalHeader>
+              <ModalBody>
+                {/*<div className="row col-12 justify-content-end no-gutters">*/}
+                  {/*<Button color="primary" onClick={() => this.props.addProperty()}>+</Button>*/}
+                {/*</div>*/}
+                {
+                  this.props.listKey.map(key => {
+                    let defaultValue = [];
+                    if (this.props.tmpData[key]
+                      && this.props.constraintData[key]
+                      && LIST_TABLE_CONSTRAINT[this.props.tableName]
+                      && LIST_TABLE_CONSTRAINT[this.props.tableName][key]) {
+                      let listKey = this.props.tmpData[key].split(",");
+                      defaultValue = this.props.constraintData[key].data.filter(v => _.indexOf(listKey, v.value) > -1);
+                    }
+                    return (
+                      <div className="form-group" key={key}>
+                        <label className="col-12">{key}</label>
+                        <div className="col-12">
+                          {
+                            this.props.constraintData[key] ?
+                              LIST_TABLE_CONSTRAINT[this.props.tableName][key] ?
+                                <Select
+                                  defaultValue={defaultValue}
+                                  options={this.props.constraintData[key].data}
+                                  // value={this.props.tmpData[key]}
+                                  onChange={(e) => {
+                                    this.props.handleChangeDataAddMultiple(key, e)
+                                  }}
+                                  isMulti
+                                  className="g-font-size-15"
+                                />
+                                :
+                                <Input type="select" value={this.props.tmpData[key.value]} onChange={(e) => {
+                                  this.props.handleChangeDataAdd(key, e.target.value);
+                                }}
+                                >
+                                  {this.props.constraintData[key].data.map(k => {
+                                    return (
+                                      <option value={k.value} key={k.value}>{k.label}</option>
+                                    )
+                                  })}
+                                </Input>
+                              :
+                              <Input type="text" disabled={key == 'ID' && this.props.screenType == "E"}
+                                     className="form-control"
+                                     value={this.props.tmpData[key]} onChange={(e) => {
+                                this.props.handleChangeDataAdd(key, e.target.value);
+                              }}/>
+                          }
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onClick={() => this.props.saveManagerTable()}>Submit</Button>
+                <Button color="secondary" onClick={() => this.props.handleShowModal(false)}>Cancel</Button>
+              </ModalFooter>
+            </Modal>
+            : ""
+        }
       </div>
     );
   }

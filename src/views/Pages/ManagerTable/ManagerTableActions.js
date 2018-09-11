@@ -150,7 +150,7 @@ export function requestManagerTableData() {
     let req = {
       "screenType": screenType ? screenType : "V",
       "tableName": tableName,
-      "constraintTable": Object.keys(LIST_TABLE_CONSTRAINT[tableName]).join(","),
+      "constraintTable": LIST_TABLE_CONSTRAINT[tableName] ? Object.keys(LIST_TABLE_CONSTRAINT[tableName]).join(",") : "",
       "data": tmpData
     };
     sendRequestToServer(CONST_SERVICE_URL_GET_MANAGER_TABLE, "POST", req, requestSuccess, requestFailure, dispatch);

@@ -50,8 +50,18 @@ export default {
       icon: 'icon-puzzle',
       children: [
         {
-          name: 'ChallegeData',
-          url: '/managerTable',
+          name: 'ChallengeData',
+          url: '/managerTable?tableName=ChallengeData',
+          icon: 'icon-puzzle',
+        },
+        {
+          name: 'Game Settings',
+          url: '/managerTable?tableName=GameSettings',
+          icon: 'icon-puzzle',
+        },
+        {
+          name: 'Game Types',
+          url: '/managerTable?tableName=GameTypes',
           icon: 'icon-puzzle',
         },
         {
@@ -59,6 +69,7 @@ export default {
           url: '/managerTable?tableName=PlayType',
           icon: 'icon-puzzle',
         },
+
       ]
       // badge: {
       //   variant: 'info',

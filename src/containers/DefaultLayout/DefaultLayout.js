@@ -21,6 +21,7 @@ import routes from '../../routes';
 import DefaultAside from './DefaultAside';
 import DefaultFooter from './DefaultFooter';
 import DefaultHeader from './DefaultHeader';
+import DefaultSidebarNav from './DefaultSidebarNav';
 
 class DefaultLayout extends Component {
   render() {
@@ -33,7 +34,7 @@ class DefaultLayout extends Component {
           <AppSidebar fixed display="lg">
             <AppSidebarHeader />
             <AppSidebarForm />
-            <AppSidebarNav navConfig={navigation} {...this.props} />
+            <DefaultSidebarNav/>
             <AppSidebarFooter />
             <AppSidebarMinimizer />
           </AppSidebar>
